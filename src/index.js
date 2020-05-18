@@ -1,11 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello {this.props.name}</div>;
-  }
+import TimeTable from './TimeTable';
+import 'tachyons';
+
+function App() {
+  return (
+    <section className="bg-light-red pa3 vh-100 sans-serif">
+      <div className="mw7 center">
+        <h1 className="h1 f1 near-white pb5">WorldTimeLite</h1>
+        <TimeTable />
+      </div>
+    </section>
+  );
 }
 
-var mountNode = document.getElementById("app");
-ReactDOM.render(<HelloMessage name="Kaizer" />, mountNode);
+var mountNode = document.getElementById('app');
+ReactDOM.render(<App />, mountNode);
