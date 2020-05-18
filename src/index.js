@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import TimeTable from './TimeTable';
-import 'tachyons';
+import TimeTable from './ui/TimeTable';
 
 function App() {
   return (
-    <section className="bg-light-red pa3 vh-100 sans-serif">
-      <div className="mw7 center">
-        <h1 className="h1 f1 near-white pb5">WorldTimeLite</h1>
+    <section className="bg-red-400 h-screen font-sans pt-4">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl text-gray-100 py-6">WorldTimeLite</h1>
         <TimeTable />
       </div>
     </section>

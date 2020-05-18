@@ -1,17 +1,14 @@
 import React from 'react';
+import SelectSearch from 'react-select-search';
 
 import TimezonePlace from './TimezonePlace';
+import SearchBar from './SearchBar';
+import timezones from '../timezones.json';
 
 function TimeTable() {
   return (
-    <div className="bg-white br2 shadow-4 pa3">
-      <div>
-        <input
-          className="bg-near-white pv2 ph3 bn br-pill"
-          type="text"
-          placeholder="Type a place or city"
-        />
-      </div>
+    <div className="bg-white rounded-sm shadow-lg p-4">
+      <SearchBar options={timezones.map(t => ({value: t, name: t}))} />
       <ul className="list">
         <TimezonePlace city="Cairo" country="Egypt" />
         <TimezonePlace city="Guadalajara" country="Mexico" />
