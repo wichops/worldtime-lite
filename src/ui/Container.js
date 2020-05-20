@@ -6,8 +6,30 @@ import TimeTable from './TimeTable';
 import cities from '../cityMap.json';
 
 function Container() {
-  const [places, setPlaces] = useState({});
-  const [home, setHome] = useState(null);
+  const [places, setPlaces] = useState({
+    'Eritrea, Mendefera': {
+      timezone: 'Africa/Asmara',
+      offset: 3,
+      country: 'Eritrea',
+      city: 'Mendefera',
+      abbreviation: 'EAT',
+    },
+    'Mexico, Mexicali': {
+      timezone: 'America/Tijuana',
+      offset: -7,
+      country: 'Mexico',
+      city: 'Mexicali',
+      abbreviation: 'PDT',
+    },
+    'Mexico, Guadalajara': {
+      timezone: 'America/Mexico_City',
+      offset: -5,
+      country: 'Mexico',
+      city: 'Guadalajara',
+      abbreviation: 'CDT',
+    },
+  });
+  const [home, setHome] = useState('Mexico, Mexicali');
 
   function handleDelete(placeId) {
     return () => {

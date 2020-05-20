@@ -1,20 +1,29 @@
 import {DateTime} from 'luxon';
 
-export function createHourTimeline(startDate, hourCount) {
+export function createHourTimeline(startDate, hourCount, timezone) {
   const currentDate = DateTime.fromJSDate(startDate);
   const timeline = [];
 
   if (!currentDate.isValid) return null;
   for (let i = 0; i < hourCount; i++) {
-    timeline.push(currentDate.plus({hours: i}).toJSDate());
+    const time = currentDate.plus({hours: i});
+    timeline.push(time.toJSDate());
   }
-  return timeline;
+  return timeline.map(
+    t => new Date(t.toLocaleString('en-US', {timeZone: timezone})),
+  );
 }
 
-export function getDayStart(date) {
-  const currentDate = DateTime.fromJSDate(date).toUTC();
+export function getDayStart(date, timezone) {
+  const currentDate = DateTime.fromJSDate(date);
 
   if (!currentDate.isValid) return null;
 
-  return currentDate.startOf('day').toJSDate();
+  const start = currentDate
+    .startOf('day')
+    .setZone(timezone, {keepLocalTime: true});
+  console.info(start.toString());
+  console.info(start.toJSDate().toString());
+
+  return start.toJSDate();
 }

@@ -34,18 +34,20 @@ describe('Test Date module', () => {
 
       expect(timeline).toEqual(expected);
     });
-    test('changes date with hours passing to the next day', () => {});
-    const timeline = createHourTimeline(
-      new Date('2020-05-20T23:00:00.000Z'),
-      3,
-    );
+    test('changes date based on timezone', () => {
+      const timeline = createHourTimeline(
+        new Date('2020-05-20T20:00:00.000Z'),
+        3,
+        'UTC+2',
+      );
 
-    const expected = [
-      new Date('2020-05-20T23:00:00.000Z'),
-      new Date('2020-05-21T00:00:00.000Z'),
-      new Date('2020-05-21T01:00:00.000Z'),
-    ];
+      const expected = [
+        new Date('2020-05-20T18:00:00.000Z'),
+        new Date('2020-05-20T19:00:00.000Z'),
+        new Date('2020-05-20T20:00:00.000Z'),
+      ];
 
-    expect(timeline).toEqual(expected);
+      expect(timeline).toEqual(expected);
+    });
   });
 });

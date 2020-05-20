@@ -6,12 +6,9 @@
   "scripts": {
     "start": "parcel index.html",
     "format": "prettier --write \"src/**/*.js\"",
-    "test": "jest"
+    "test": "TZ=utc jest --watchAll"
   },
-  "keywords": [
-    "react",
-    "timezone"
-  ],
+  "keywords": ["react", "timezone"],
   "author": "@huichops (Luis Argumedo)",
   "license": "ISC",
   "dependencies": {
