@@ -3,7 +3,7 @@ import Fuse from 'fuse.js';
 import Select from 'react-select-search';
 
 function SearchBar({cities, onChange}) {
-  const fuse = new Fuse(cities, {threshold: 0.3, keys: ['city', 'country']});
+  const fuse = new Fuse(cities, {threshold: 0.2, keys: ['city', 'country']});
 
   return (
     <Select

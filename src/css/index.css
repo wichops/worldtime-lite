@@ -40,6 +40,11 @@
 
 }
 
+.select-search:not(.is-loading):not(.select-search--multiple) .select-search__value::after {
+	@apply border-b border-r;
+	transform: rotate(45deg);
+	pointer-events: none;
+}
 .select-search__row:not(:first-child) {
       border-top: 1px solid #eee;
 }
