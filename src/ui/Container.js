@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {DateTime} from 'luxon';
+import React, { useState, useEffect } from 'react';
+import { DateTime } from 'luxon';
 
 import SearchBar from './SearchBar';
 import TimeTable from './TimeTable';
@@ -40,14 +40,14 @@ function Container() {
       if (!placesIds.length) setHome(null);
       if (placeId === home) setHome(placesIds[0]);
 
-      setPlaces({...places});
+      setPlaces({ ...places });
     };
   }
 
   function handleChange(_, place) {
     fetch(`http://worldtimeapi.org/api/timezone/${place.timezone}`)
-      .then(r => r.json())
-      .then(r => {
+      .then((r) => r.json())
+      .then((r) => {
         const offset = parseInt(r.utc_offset);
         const placeId = `${place.country}, ${place.city}`;
         const placeEntry = {
@@ -61,7 +61,7 @@ function Container() {
         if (!Object.keys(places).length) setHome(placeId);
 
         places[placeId] = placeEntry;
-        setPlaces({...places});
+        setPlaces({ ...places });
       })
       .catch(console.error);
   }

@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import Layout from './ui/Layout';
+import Layout from "./ui/Layout";
 
 function App() {
   return <Layout />;
 }
 
-const mountNode = document.getElementById('app');
+const mountNode = document.getElementById("app");
 ReactDOM.render(<App />, mountNode);
