@@ -2,7 +2,7 @@ import React from 'react';
 import {DateTime} from 'luxon';
 
 import {getDayStart, createHourTimeline} from '../js/date';
-import TimelineItem from './TimelineItem';
+import TimelineItem from './TimelineItem/index';
 
 function TimezonePlace({
   city,
@@ -21,7 +21,6 @@ function TimezonePlace({
   const timeString = time.toFormat('HH:MM');
   const dateString = time.toFormat('ccc, LLL dd');
   const timeline = createHourTimeline(startDate, 24, timezone);
-  console.log({startDate});
 
   return (
     <li className="flex flex-1 justify-between h-16 my-2 -mx2 box-border text-sm">
@@ -47,7 +46,7 @@ function TimezonePlace({
           <p className="text-sm text-gray-600">{dateString}</p>
         </div>
       </div>
-      <div className="flex text-white p-2">
+      <div className="flex text-white p-2 rounded">
         {timeline.map(t => (
           <TimelineItem key={Math.random() * 100} time={t} />
         ))}

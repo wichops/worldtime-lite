@@ -22,8 +22,6 @@ export function getDayStart(date, timezone) {
   const start = currentDate
     .startOf('day')
     .setZone(timezone, {keepLocalTime: true});
-  console.info(start.toString());
-  console.info(start.toJSDate().toString());
 
   return start.toJSDate();
 }
