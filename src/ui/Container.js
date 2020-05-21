@@ -69,7 +69,9 @@ function Container() {
   return (
     <div className="bg-white rounded-sm shadow-lg p-4">
       <div className="py-2">
-        <SearchBar cities={cities} onChange={handleChange} />
+        <div className="mb-6">
+          <SearchBar cities={cities} onChange={handleChange} />
+        </div>
         <TimeTable
           places={places}
           home={home}

@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import {DateTime} from 'luxon';
 import {getDayStart, createHourTimeline} from '../js/date';
 
+import Marker from './Marker';
 import TimezonePlace from './TimezonePlace';
 
 function TimeTable({places, home, onDelete, onSetHome}) {
@@ -25,9 +26,7 @@ function TimeTable({places, home, onDelete, onSetHome}) {
 
   return (
     <div>
-      <div
-        className="absolute w-6 h-full px-1 bg-orange-500 opacity-50 border border-red-700"
-        style={{left, height}}></div>
+      <Marker style={{left, height}} />
       <ul className="list" ref={list}>
         {Object.entries(places).map(([id, p]) => (
           <TimezonePlace

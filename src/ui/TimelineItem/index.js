@@ -40,15 +40,20 @@ function TimelineItem({time, onMouseOver}) {
   return (
     <div
       onMouseOver={onMouseOver}
-      className={`flex w-6 px-1 flex-col items-center justify-between py-1 text-xs ${classes}`}>
-      {hours === 0 ? (
-        <React.Fragment>
-          <span>{time.toLocaleString('en-US', {month: 'short'})}</span>
-          <span className="text-xs">{time.getDate()}</span>
-        </React.Fragment>
-      ) : (
-        hours
-      )}
+      className="py-3 box-content w-7 text-xs bg-white">
+      <div
+        className={`h-full flex flex-col items-center justify-between font-bold ${classes}`}>
+        {hours === 0 ? (
+          <React.Fragment>
+            <span className="text-xxs">
+              {time.toLocaleString('en-US', {month: 'short'})}
+            </span>
+            <span className="font-normal">{time.getDate()}</span>
+          </React.Fragment>
+        ) : (
+          hours
+        )}
+      </div>
     </div>
   );
 }
