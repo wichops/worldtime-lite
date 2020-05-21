@@ -29,21 +29,22 @@ function getClassnamesByHour(hours) {
       break;
   }
 
-  if (hours === START_OF_DAY) classes += 'rounded-l ml-1';
-  if (hours === END_OF_DAY) classes += 'rounded-r mr-1';
+  if (hours === START_OF_DAY) classes += 'rounded-l';
+  if (hours === END_OF_DAY) classes += 'rounded-r';
   return classes;
 }
 
-function TimelineItem({time}) {
+function TimelineItem({time, onMouseOver}) {
   const hours = time.getHours();
   const classes = getClassnamesByHour(hours);
   return (
     <div
-      className={`flex flex-col items-center justify-between py-1 px-2 text-xs ${classes}`}>
+      onMouseOver={onMouseOver}
+      className={`flex w-6 px-1 flex-col items-center justify-between py-1 text-xs ${classes}`}>
       {hours === 0 ? (
         <React.Fragment>
           <span>{time.toLocaleString('en-US', {month: 'short'})}</span>
-          <span>{time.getDate()}</span>
+          <span className="text-xs">{time.getDate()}</span>
         </React.Fragment>
       ) : (
         hours

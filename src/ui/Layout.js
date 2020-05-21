@@ -10,7 +10,6 @@ function Layout() {
         <h1 className="text-4xl text-gray-100 py-6">WorldTimeLite</h1>
         <Container />
       </div>
-      5{' '}
     </section>
   );
 }
