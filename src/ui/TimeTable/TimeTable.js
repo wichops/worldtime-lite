@@ -1,22 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { getDayStart, createHourTimeline } from '../js/date';
+import PropTypes from 'prop-types';
 
-import Marker from './Marker';
+import { getDayStart, createHourTimeline } from '/src/js/date';
+
+import Marker from '../Marker';
 import TimezonePlace from './TimezonePlace';
 
+const ONE_MINUTE = 1000 * 60;
+
 function TimeTable({ places, home, onDelete, onSetHome }) {
-  const [time, setTime] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [left, setLeft] = useState(0);
   const [offset, setOffset] = useState(0);
   const [listOffset, setListOffset] = useState(0);
   const [height, setHeight] = useState(0);
-  const homePlace = places[home];
-
-  const onMouseOver = (e) => {
-    const { x } = e.target.getBoundingClientRect();
-    setOffset(x - listOffset);
-    setLeft(x);
-  };
 
   useEffect(() => {
     function handleResize(e) {
@@ -29,13 +26,25 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
     }
 
     window.addEventListener('resize', handleResize);
-
-    setHeight(list.current.offsetHeight);
   }, [offset]);
+
+  useEffect(() => {
+    window.setInterval(() => setCurrentDate(new Date()), ONE_MINUTE);
+  }, []);
+
+  useEffect(() => {
+    setHeight(list.current.offsetHeight);
+  }, [places]);
 
   let list = useRef(null);
 
-  const startOfDay = getDayStart(time, homePlace.timezone);
+  const onMouseOver = (e) => {
+    const { x } = e.target.getBoundingClientRect();
+    setOffset(x - listOffset);
+    setLeft(x);
+  };
+  const homePlace = places[home];
+  const startOfDay = getDayStart(currentDate, homePlace.timezone);
 
   return (
     <div>
@@ -50,10 +59,10 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
             abbreviation={p.abbreviation}
             offset={p.offset - homePlace.offset}
             timezone={p.timezone}
-            datetime={time}
+            currentDate={currentDate}
             startDate={startOfDay}
             onSetHome={() => onSetHome(id)}
-            onMouseOver={onMouseOver}
+            onHourOver={onMouseOver}
             onDelete={onDelete(id)}
           />
         ))}
@@ -61,5 +70,21 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
     </div>
   );
 }
+
+TimeTable.propTypes = {
+  home: PropTypes.string.isRequired,
+  places: PropTypes.objectOf(
+    PropTypes.shape({
+      timezone: PropTypes.string,
+      offset: PropTypes.number,
+      country: PropTypes.string,
+      city: PropTypes.string,
+      abbreviation: PropTypes.string,
+    })
+  ).isRequired,
+
+  onDelete: PropTypes.func,
+  onSetHome: PropTypes.func,
+};
 
 export default TimeTable;

@@ -1,4 +1,4 @@
-import {getDayStart, createHourTimeline} from './date';
+import { getTimeOfDay, getDayStart, createHourTimeline } from './date';
 
 describe('Test Date module', () => {
   describe('getDayStart', () => {
@@ -23,7 +23,7 @@ describe('Test Date module', () => {
     test('keeps date with same day range', () => {
       const timeline = createHourTimeline(
         new Date('2020-05-20T16:00:00.000Z'),
-        3,
+        3
       );
 
       const expected = [
@@ -38,7 +38,7 @@ describe('Test Date module', () => {
       const timeline = createHourTimeline(
         new Date('2020-05-20T20:00:00.000Z'),
         3,
-        'Europe/Berlin',
+        'Europe/Berlin'
       );
 
       const expected = [
@@ -48,6 +48,41 @@ describe('Test Date module', () => {
       ];
 
       expect(timeline).toEqual(expected);
+    });
+  });
+
+  describe('getTimeOfDay', () => {
+    it('returns "dawn" between 6-7 hours', () => {
+      const hours = [6, 7];
+      const actual = hours.map(getTimeOfDay);
+
+      const expected = Array(hours.length).fill('dawn');
+      expect(actual).toEqual(expected);
+    });
+    it('returns "dusk" between 18-20 hours', () => {
+      const hours = [18, 19, 20];
+      const actual = hours.map(getTimeOfDay);
+      const expected = Array(hours.length).fill('dusk');
+
+      expect(actual).toEqual(expected);
+    });
+    it('returns "day" between 8-17 hours hours', () => {
+      const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+      const actual = hours.map(getTimeOfDay);
+      const expected = Array(hours.length).fill('day');
+
+      expect(actual).toEqual(expected);
+    });
+    it('returns "night" between 21-5 hours hours', () => {
+      const hours = [21, 22, 23, 0, 1, 2, 3, 4, 5];
+      const actual = hours.map(getTimeOfDay);
+      const expected = Array(hours.length).fill('night');
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('returns `null` if invalid hour passed', () => {
+      expect(() => getTimeOfDay('three')).toThrow('Invalid hour');
     });
   });
 });

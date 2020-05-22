@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 
 import SearchBar from './SearchBar';
-import TimeTable from './TimeTable';
+import TimeTable from './TimeTable/index';
 import cities from '../cityMap.json';
 
 function Container() {

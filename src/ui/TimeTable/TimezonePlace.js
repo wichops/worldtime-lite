@@ -1,5 +1,6 @@
 import React from 'react';
 import { DateTime } from 'luxon';
+import PropTypes from 'prop-types';
 
 import TrashIcon from '../icons/trash.svg';
 import HomeIcon from '../icons/home.svg';
@@ -11,18 +12,18 @@ function TimezonePlace({
   city,
   country,
   offset,
-  datetime,
+  currentDate,
   startDate,
   isHome,
   timezone,
   abbreviation,
   onDelete,
   onSetHome,
-  onMouseOver,
+  onHourOver,
 }) {
   const signedOffset = (offset <= 0 ? '' : '+') + offset;
 
-  const time = DateTime.fromJSDate(datetime).setZone(timezone);
+  const time = DateTime.fromJSDate(currentDate).setZone(timezone);
   const timeString = time.toFormat('HH:MM');
   const dateString = time.toFormat('ccc, LLL dd');
   const timeline = createHourTimeline(startDate, 24, timezone);
@@ -62,8 +63,8 @@ function TimezonePlace({
         {timeline.map((t) => (
           <TimelineItem
             key={Math.random() * 100}
-            time={t}
-            onMouseOver={onMouseOver}
+            date={t}
+            onMouseOver={onHourOver}
           />
         ))}
       </div>
@@ -71,4 +72,18 @@ function TimezonePlace({
   );
 }
 
+TimezonePlace.propTypes = {
+  currentTime: PropTypes.instanceOf(Date),
+  place: PropTypes.shape({
+    timezone: PropTypes.string,
+    offset: PropTypes.number,
+    country: PropTypes.string,
+    city: PropTypes.string,
+    abbreviation: PropTypes.string,
+  }),
+
+  onDelete: PropTypes.func,
+  onSetHome: PropTypes.func,
+  onHourOver: PropTypes.func,
+};
 export default TimezonePlace;
