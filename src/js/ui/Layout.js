@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
 
-import MarkerContext from '/src/MarkerContext';
+import MarkerContext from '/src/js/MarkerContext';
 import TimeTable from './TimeTable';
 
 function Layout() {
@@ -21,7 +21,7 @@ function Layout() {
         WorldTimeLite
       </h1>
       <div
-        className="w-full overflow-x-auto mx-auto"
+        className="w-full overflow-y-hidden overflow-x-auto mx-auto"
         onScroll={handleScroll}
         ref={containerRef}
       >

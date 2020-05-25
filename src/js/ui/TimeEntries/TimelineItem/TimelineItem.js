@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { getTimeOfDay, DAY, NIGHT, DAWN, DUSK } from '../../../js/date';
+import { getTimeOfDay, DAY, NIGHT, DAWN, DUSK } from '../../../date';
 
 const START_OF_DAY = 0;
 const END_OF_DAY = 23;

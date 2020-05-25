@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 import SearchBar from './SearchBar';
 import TimeEntries from './TimeEntries';
-import cities from '../cityMap.json';
+import cities from '/src/data/cityMap.json';
 
 function TimeTable() {
   const [places, setPlaces] = useState({

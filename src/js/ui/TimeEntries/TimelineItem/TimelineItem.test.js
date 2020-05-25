@@ -1,6 +1,6 @@
 import React from 'react';
 import TimelineItem from './index';
-import { createHourTimeline } from '../../../js/date';
+import { createHourTimeline } from '../../../date';
 
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { getDayStart, createHourTimeline } from '/src/js/date';
-import MarkerContext from '/src/MarkerContext';
+import { getDayStart, createHourTimeline } from '../../date';
+import MarkerContext from '/src/js/MarkerContext';
 
 import Marker from '../Marker';
 import TimezonePlace from './TimezonePlace';

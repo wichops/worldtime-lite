@@ -2,10 +2,10 @@ import React from 'react';
 import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
 
-import TrashIcon from '../../icons/trash.svg';
-import HomeIcon from '../../icons/home.svg';
+import TrashIcon from '/src/icons/trash.svg';
+import HomeIcon from '/src/icons/home.svg';
 
-import { getDayStart, createHourTimeline } from '../../js/date';
+import { getDayStart, createHourTimeline } from '../../date';
 import TimelineItem from './TimelineItem';
 
 function TimezonePlace({

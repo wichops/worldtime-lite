@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkerContext from '/src/MarkerContext';
+import MarkerContext from '/src/js/MarkerContext';
 
 function Marker() {
   return (

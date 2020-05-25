@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Layout from './ui/Layout';
-import MarkerContext from './MarkerContext';
+import Layout from './js/ui/Layout';
+import MarkerContext from './js/MarkerContext';
 
 class App extends React.Component {
   constructor(props) {
