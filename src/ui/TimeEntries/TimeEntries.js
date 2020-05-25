@@ -10,10 +10,13 @@ import TimezonePlace from './TimezonePlace';
 const ONE_MINUTE = 1000 * 60;
 
 function TimeTable({ places, home, onDelete, onSetHome }) {
+  if (!home) return null;
+
   const context = useContext(MarkerContext);
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
+    if (!home) return;
     context.setHeight(list.current.offsetHeight);
   }, [places]);
 
@@ -82,7 +85,7 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
 }
 
 TimeTable.propTypes = {
-  home: PropTypes.string.isRequired,
+  home: PropTypes.string,
   places: PropTypes.objectOf(
     PropTypes.shape({
       timezone: PropTypes.string,
