@@ -9,9 +9,14 @@
     "test": "TZ=utc jest --watchAll"
   },
   "jest": {
-    "setupFilesAfterEnv": ["./jest.setup.js"]
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
   },
-  "keywords": ["react", "timezone"],
+  "keywords": [
+    "react",
+    "timezone"
+  ],
   "author": "@huichops (Luis Argumedo)",
   "license": "ISC",
   "dependencies": {

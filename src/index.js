@@ -19,6 +19,9 @@ class App extends React.Component {
         left: state.left + (state.scrollLeft - x),
       }));
     };
+    this.unsetMarker = () => {
+      this.setState({ isSet: false });
+    };
     this.setLeft = (x) => {
       if (this.state.isSet) return;
       this.setState((state) => {
@@ -46,6 +49,7 @@ class App extends React.Component {
       offset: 0,
       scrollLeft: 0,
       listOffset: 0,
+      unsetMarker: this.unsetMarker,
       setLeft: this.setLeft,
       setHeight: this.setHeight,
       setScrollLeft: this.setScrollLeft,

@@ -14,11 +14,14 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
+    context.setHeight(list.current.offsetHeight);
+  }, [places]);
+
+  useEffect(() => {
     const { x } = list.current
       .querySelector('.timeline')
       .getBoundingClientRect();
 
-    context.setHeight(list.current.offsetHeight);
     context.setListOffset(x);
   }, []);
 
@@ -44,6 +47,12 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
 
     context.setLeft(x);
   };
+
+  const handleSetHome = (id) => {
+    context.unsetMarker();
+    onSetHome(id);
+  };
+
   const homePlace = places[home];
   const startOfDay = getDayStart(currentDate, homePlace.timezone);
 
@@ -62,7 +71,7 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
             timezone={p.timezone}
             currentDate={currentDate}
             startDate={startOfDay}
-            onSetHome={() => onSetHome(id)}
+            onSetHome={() => handleSetHome(id)}
             onHourOver={onMouseOver}
             onDelete={onDelete(id)}
           />
