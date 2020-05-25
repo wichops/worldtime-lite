@@ -5,7 +5,6 @@ const MarkerContext = React.createContext({
   left: 0,
   offset: 0,
   listOffset: 0,
-  isSet: false,
   setLeft: () => {},
   setHeight: () => {},
   setResizePosition: () => {},

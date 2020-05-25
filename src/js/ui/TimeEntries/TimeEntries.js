@@ -52,7 +52,6 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
   };
 
   const handleSetHome = (id) => {
-    context.unsetMarker();
     onSetHome(id);
   };
 

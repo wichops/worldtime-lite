@@ -6,16 +6,8 @@ import TimeEntries from './TimeEntries';
 import cities from '/src/data/cityMap.json';
 
 function TimeTable() {
-  const [places, setPlaces] = useState({
-    'Mexico, Mexicali': {
-      timezone: 'America/Tijuana',
-      offset: -7,
-      country: 'Mexico',
-      city: 'Mexicali',
-      abbreviation: 'PDT',
-    },
-  });
-  const [home, setHome] = useState('Mexico, Mexicali');
+  const [places, setPlaces] = useState({});
+  const [home, setHome] = useState(null);
 
   function handleDelete(placeId) {
     return () => {
@@ -44,19 +36,15 @@ function TimeTable() {
           abbreviation: r.abbreviation,
         };
 
-        if (!Object.keys(places).length) setHome(placeId);
-
         places[placeId] = placeEntry;
         setPlaces({ ...places });
+        if (Object.keys(places).length === 1) setHome(placeId);
       })
       .catch(console.error);
   }
 
   return (
-    <div
-      className="bg-white rounded-sm shadow-lg p-4 min-w-lg"
-      style={{ minWidth: '995px' }}
-    >
+    <div className="bg-white rounded-sm shadow-lg p-4 min-w-lg h-64">
       <div className="py-2">
         <div className="mb-6">
           <SearchBar cities={cities} onChange={handleChange} />

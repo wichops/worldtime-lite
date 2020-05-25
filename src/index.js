@@ -14,6 +14,7 @@ class App extends React.Component {
       }));
     };
     this.setScrollPosition = (x) => {
+      if (x === this.state.scrollLeft) return;
       this.setState((state) => ({
         scrollLeft: x,
         left: state.left + (state.scrollLeft - x),
@@ -23,10 +24,9 @@ class App extends React.Component {
       this.setState({ isSet: false });
     };
     this.setLeft = (x) => {
-      if (this.state.isSet) return;
+      if (this.state.left === x) return;
       this.setState((state) => {
         return {
-          isSet: true,
           offset: x - state.listOffset,
           left: x,
         };
