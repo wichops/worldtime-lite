@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { getDayStart, createHourTimeline } from '/src/js/date';
+import MarkerContext from '/src/MarkerContext';
 
 import Marker from '../Marker';
 import TimezonePlace from './TimezonePlace';
@@ -9,11 +10,17 @@ import TimezonePlace from './TimezonePlace';
 const ONE_MINUTE = 1000 * 60;
 
 function TimeTable({ places, home, onDelete, onSetHome }) {
+  const context = useContext(MarkerContext);
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [left, setLeft] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const [listOffset, setListOffset] = useState(0);
-  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const { x } = list.current
+      .querySelector('.timeline')
+      .getBoundingClientRect();
+
+    context.setHeight(list.current.offsetHeight);
+    context.setListOffset(x);
+  }, []);
 
   useEffect(() => {
     function handleResize(e) {
@@ -21,34 +28,28 @@ function TimeTable({ places, home, onDelete, onSetHome }) {
         .querySelector('.timeline')
         .getBoundingClientRect();
 
-      setListOffset(x);
-      setLeft(x + offset);
+      context.setResizePosition(x);
     }
-
     window.addEventListener('resize', handleResize);
-  }, [offset]);
+  }, [context.offset]);
 
   useEffect(() => {
     window.setInterval(() => setCurrentDate(new Date()), ONE_MINUTE);
   }, []);
 
-  useEffect(() => {
-    setHeight(list.current.offsetHeight);
-  }, [places]);
-
   let list = useRef(null);
 
   const onMouseOver = (e) => {
     const { x } = e.target.getBoundingClientRect();
-    setOffset(x - listOffset);
-    setLeft(x);
+
+    context.setLeft(x);
   };
   const homePlace = places[home];
   const startOfDay = getDayStart(currentDate, homePlace.timezone);
 
   return (
     <div>
-      <Marker style={{ left, height }} />
+      <Marker />
       <ul className="list" ref={list}>
         {Object.entries(places).map(([id, p]) => (
           <TimezonePlace

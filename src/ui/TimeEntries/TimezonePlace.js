@@ -2,11 +2,11 @@ import React from 'react';
 import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
 
-import TrashIcon from '../icons/trash.svg';
-import HomeIcon from '../icons/home.svg';
+import TrashIcon from '../../icons/trash.svg';
+import HomeIcon from '../../icons/home.svg';
 
-import { getDayStart, createHourTimeline } from '../js/date';
-import TimelineItem from './TimelineItem/index';
+import { getDayStart, createHourTimeline } from '../../js/date';
+import TimelineItem from './TimelineItem';
 
 function TimezonePlace({
   city,
@@ -60,10 +60,13 @@ function TimezonePlace({
         </div>
       </div>
       <div className="ml-4 flex timeline">
-        {timeline.map((t) => (
+        {timeline.map((d) => (
           <TimelineItem
+            isHome={isHome}
+            timezone={timezone}
             key={Math.random() * 100}
-            date={t}
+            date={d}
+            currentDate={time.toJSDate()}
             onMouseOver={onHourOver}
           />
         ))}

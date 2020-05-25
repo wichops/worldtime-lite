@@ -2,31 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 
 import SearchBar from './SearchBar';
-import TimeTable from './TimeTable/index';
+import TimeEntries from './TimeEntries';
 import cities from '../cityMap.json';
 
-function Container() {
+function TimeTable() {
   const [places, setPlaces] = useState({
-    'Eritrea, Mendefera': {
-      timezone: 'Africa/Asmara',
-      offset: 3,
-      country: 'Eritrea',
-      city: 'Mendefera',
-      abbreviation: 'EAT',
-    },
     'Mexico, Mexicali': {
       timezone: 'America/Tijuana',
       offset: -7,
       country: 'Mexico',
       city: 'Mexicali',
       abbreviation: 'PDT',
-    },
-    'Mexico, Guadalajara': {
-      timezone: 'America/Mexico_City',
-      offset: -5,
-      country: 'Mexico',
-      city: 'Guadalajara',
-      abbreviation: 'CDT',
     },
   });
   const [home, setHome] = useState('Mexico, Mexicali');
@@ -67,12 +53,15 @@ function Container() {
   }
 
   return (
-    <div className="bg-white rounded-sm shadow-lg p-4">
+    <div
+      className="bg-white rounded-sm shadow-lg p-4 min-w-lg"
+      style={{ minWidth: '995px' }}
+    >
       <div className="py-2">
         <div className="mb-6">
           <SearchBar cities={cities} onChange={handleChange} />
         </div>
-        <TimeTable
+        <TimeEntries
           places={places}
           home={home}
           onSetHome={setHome}
@@ -83,4 +72,4 @@ function Container() {
   );
 }
 
-export default Container;
+export default TimeTable;

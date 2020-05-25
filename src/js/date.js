@@ -1,5 +1,10 @@
 import { DateTime } from 'luxon';
 
+export const DAWN = 'dawn';
+export const DAY = 'day';
+export const NIGHT = 'night';
+export const DUSK = 'dusk';
+
 export function createHourTimeline(startDate, hourCount, timezone) {
   const currentDate = DateTime.fromJSDate(startDate);
   const timeline = [];

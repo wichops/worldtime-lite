@@ -1,11 +1,16 @@
 import React from 'react';
+import MarkerContext from '/src/MarkerContext';
 
-function Marker({ style }) {
+function Marker() {
   return (
-    <div
-      className="absolute w-7 h-full bg-orange-500 bg-opacity-25 border border-orange-500 border-2 rounded"
-      style={style}
-    ></div>
+    <MarkerContext.Consumer>
+      {({ left, scrollLeft, height }) => (
+        <div
+          className="absolute w-7 h-full bg-orange-500 bg-opacity-25 border border-orange-500 border-2 rounded"
+          style={{ left: left, height }}
+        ></div>
+      )}
+    </MarkerContext.Consumer>
   );
 }
 
